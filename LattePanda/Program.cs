@@ -11,33 +11,32 @@ class Program
         Console.WriteLine("LattePanda hardware integration demo");
         Arduino arduino = new Arduino();
         Console.WriteLine("Setting up pins");
-        arduino.PinMode(7, Arduino.INPUT);   // Switch
-        arduino.PinMode(10, Arduino.OUTPUT); // Red LED
-        arduino.PinMode(11, Arduino.OUTPUT); // Green LED
+        arduino.PinMode(0, Arduino.INPUT);   // Switch
+        arduino.PinMode(1, Arduino.OUTPUT); // Red LED
+        arduino.PinMode(2, Arduino.OUTPUT); // Green LED
         Console.WriteLine("Starting loop:");
         while (true)
         {
             Console.Write(".");
-            arduino.DigitalWrite(11, Arduino.HIGH);
-            var input = arduino.DigitalRead(7);
+            arduino.DigitalWrite(2, Arduino.HIGH);
+            var input = arduino.DigitalRead(0);
             Thread.Sleep(100);
             if (input == Arduino.HIGH)
             {
                 Console.WriteLine("");
                 Console.WriteLine("Switch activated");
-                arduino.DigitalWrite(11, Arduino.LOW);
-                arduino.DigitalWrite(10, Arduino.HIGH);
+                arduino.DigitalWrite(2, Arduino.LOW);
+                Thread.Sleep(100);
+                arduino.DigitalWrite(1, Arduino.HIGH);
                 Thread.Sleep(2000);
             }
             else
             {
-                arduino.DigitalWrite(10, Arduino.LOW);
-                arduino.DigitalWrite(10, Arduino.LOW);
+                arduino.DigitalWrite(1, Arduino.LOW);
             }
-            Thread.Sleep(500);
-            arduino.DigitalWrite(11, Arduino.LOW);
-            arduino.DigitalWrite(11, Arduino.LOW);
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
+            arduino.DigitalWrite(2, Arduino.LOW);
+            Thread.Sleep(1000);
         }
     }
 }
