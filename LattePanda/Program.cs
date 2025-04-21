@@ -11,7 +11,7 @@ class Program
         Console.WriteLine("LattePanda hardware integration demo");
         Arduino arduino = new Arduino();
         Console.WriteLine("Setting up pins");
-        arduino.PinMode(9, Arduino.INPUT);   // Motion Sensor
+        arduino.PinMode(9, Arduino.INPUT);   // Switch
         arduino.PinMode(10, Arduino.OUTPUT); // Red LED
         arduino.PinMode(11, Arduino.OUTPUT); // Green LED
         arduino.DigitalWrite(10, Arduino.HIGH);
